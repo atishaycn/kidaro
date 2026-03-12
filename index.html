@@ -220,8 +220,8 @@
 
     <script>
       const CONFIG = {
-        supportEmail: "kidarojj.com",
-        submitEndpoint: "" // put your API endpoint here when ready
+        supportEmail: "kidarojj@gmail.com",
+        submitEndpoint: "https://formsubmit.co/ajax/kidarojj@gmail.com"
       };
 
       const leadForm = document.getElementById('lead-form');
@@ -245,35 +245,33 @@
       }
 
       async function sendLeadToDestination(payload) {
-        const body = {
-          to: CONFIG.supportEmail,
-          action: payload.action,
-          email: payload.email,
-          area: payload.area,
-          name: payload.name || '',
-          message: payload.message || ''
-        };
+        if (!CONFIG.submitEndpoint) {
+          const subject = encodeURIComponent(`Kidora - ${payload.action}`);
+          const bodyText = encodeURIComponent(
+            `Hi team,\n${getMailBody(payload)}\n\nRegards,\nKidora Lead Form`
+          );
 
-        if (CONFIG.submitEndpoint) {
-          const response = await fetch(CONFIG.submitEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-          });
-
-          if (!response.ok) {
-            throw new Error('Server rejected submission');
-          }
-
+          window.location.href = `mailto:${CONFIG.supportEmail}?subject=${subject}&body=${bodyText}`;
           return;
         }
 
-        const subject = encodeURIComponent(`Kidora - ${payload.action}`);
-        const bodyText = encodeURIComponent(
-          `Hi team,\n${getMailBody(payload)}\n\nRegards,\nKidora Lead Form`
-        );
+        const formData = new FormData();
+        formData.append('_subject', `Kidora - ${payload.action}`);
+        formData.append('_captcha', 'false');
+        formData.append('Action', payload.action);
+        formData.append('Email', payload.email);
+        formData.append('Area', payload.area);
+        formData.append('Name', payload.name || '');
+        formData.append('Message', payload.message || '');
 
-        window.location.href = `mailto:${CONFIG.supportEmail}?subject=${subject}&body=${bodyText}`;
+        const response = await fetch(CONFIG.submitEndpoint, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Server rejected submission');
+        }
       }
 
       function setFeedback(element, text, success = true) {
