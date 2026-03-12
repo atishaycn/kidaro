@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kidora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top-nav">
+      <div class="brand-row">
+        <span class="mark">✦</span>
+        <span class="brand-text">Kidora</span>
+      </div>
+      <div class="search-pill">
+        <span>⌕</span>
+        <input type="text" placeholder="Search class categories..." />
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="hero-kicker">Explore • Learn • Shine</p>
+        <h1>Kids discover, grow, and connect at Kidora.</h1>
+        <div class="hero-actions">
+          <a class="chip green action-trigger" href="#" data-action="Book Offline Classes">Book Offline</a>
+          <a class="chip yellow action-trigger" href="#" data-action="Book Online Classes">Book Online</a>
+        </div>
+      </section>
+
+      <section class="lead-capture" aria-label="Contact details">
+        <h2>Know what is available near your home</h2>
+        <p class="lead-note">We will get back to you with details near you: Updates</p>
+        <form id="lead-form" class="lead-form">
+          <label for="lead-email">Email:</label>
+          <input id="lead-email" type="email" placeholder="you@example.com" required />
+          <label for="lead-area">Area:</label>
+          <select id="lead-area" required>
+            <option value="" disabled selected>Select your area</option>
+            <option>Malad</option>
+            <option>Andheri</option>
+            <option>Khar</option>
+            <option>Tardeo</option>
+            <option>Fort</option>
+            <option>Thane</option>
+            <option>Ghatkopar</option>
+            <option>BKC</option>
+            <option>Mulund</option>
+          </select>
+          <button class="cta yellow" type="submit">Submit</button>
+          <p id="lead-feedback" class="feedback-text" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="icon-strip">
+        <article class="icon-card">
+          <div class="icon emoji">🎵</div>
+          <h3>Music</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">🎨</div>
+          <h3>Art</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">⚽</div>
+          <h3>Sports</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">🍳</div>
+          <h3>Cooking</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">🧪</div>
+          <h3>STEM</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">🗣️</div>
+          <h3>Language</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">💃</div>
+          <h3>Dance</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">🤸</div>
+          <h3>Movement</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">🏆</div>
+          <h3>Olympiad</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">📘</div>
+          <h3>Other courses</h3>
+        </article>
+        <article class="icon-card">
+          <div class="icon emoji">🧩</div>
+          <h3>All Activities</h3>
+        </article>
+      </section>
+
+      <section id="activities" class="activities">
+        <div class="section-heading">
+          <h2>Study now and book your class</h2>
+          <p>Both offline and online options are available for your child.</p>
+        </div>
+
+        <div class="activity-grid">
+          <article class="activity-column">
+            <header>
+              <h3>Extracurricular Offline Classes</h3>
+              <span class="pill">In-Person</span>
+            </header>
+            <ul>
+              <li>Group Art Class</li>
+              <li>Group Dance Class</li>
+              <li>Creative Writing Class</li>
+              <li>Home Piano Class</li>
+              <li>Basketball Class</li>
+              <li>Handball Class</li>
+              <li>Olympiad Maths Class</li>
+            </ul>
+            <div class="cta-row">
+              <button class="cta green action-trigger" type="button" data-action="Book Offline Class">Book Offline</button>
+            </div>
+          </article>
+
+          <article class="activity-column">
+            <header>
+              <h3>Extracurricular Online Classes</h3>
+              <span class="pill">Virtual</span>
+            </header>
+            <ul>
+              <li>Piano</li>
+              <li>Guitar</li>
+              <li>Singing</li>
+              <li>GK</li>
+            </ul>
+            <div class="cta-row">
+              <button class="cta yellow action-trigger" type="button" data-action="Book Online Class">Book Online</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="parents" class="parent-zone">
+        <article class="parent-card">
+          <h3>Important Reads for Parents</h3>
+          <ul>
+            <li>Choosing the right first class for your child</li>
+            <li>How to create a weekly learning rhythm</li>
+            <li>Group classes and confidence development</li>
+            <li>Tracking progress after the first 4 sessions</li>
+          </ul>
+        </article>
+
+        <article class="parent-card thread-card">
+          <h3>A thread for parents to communicate</h3>
+          <form id="thread-form" class="thread-form">
+            <label for="name">Name</label>
+            <input id="name" placeholder="Parent name" />
+            <label for="message">Message</label>
+            <textarea id="message" rows="4" placeholder="Post your question or suggestion"></textarea>
+            <button class="cta yellow action-trigger" type="button" data-action="Parent Message">Post Message</button>
+          </form>
+          <div id="thread" class="thread" aria-live="polite">
+            <div class="post">
+              <strong>Ananya</strong>
+              <p>What is the best batch timing for a 7-year-old in creative writing?</p>
+            </div>
+            <div class="post">
+              <strong>Vikram</strong>
+              <p>Are online classes as interactive as class sessions?</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <p>Kidora © 2026</p>
+      </footer>
+    </main>
+
+    <div id="action-modal" class="modal" aria-hidden="true">
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h3>Coming Soon</h3>
+          <button id="action-close" type="button" class="modal-close">×</button>
+        </div>
+        <p class="modal-copy">This action is coming soon. Share your email and area and we will reach out in your location.</p>
+        <form id="action-form" class="lead-form action-form">
+          <label for="action-source">Action</label>
+          <input id="action-source" readonly value="" />
+          <label for="action-email">Email:</label>
+          <input id="action-email" type="email" placeholder="you@example.com" required />
+          <label for="action-area">Area:</label>
+          <select id="action-area" required>
+            <option value="" disabled selected>Select your area</option>
+            <option>Malad</option>
+            <option>Andheri</option>
+            <option>Khar</option>
+            <option>Tardeo</option>
+            <option>Fort</option>
+            <option>Thane</option>
+            <option>Ghatkopar</option>
+            <option>BKC</option>
+            <option>Mulund</option>
+          </select>
+          <button class="cta yellow" type="submit">Submit</button>
+          <p id="action-feedback" class="feedback-text" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const CONFIG = {
+        supportEmail: "kidarojj.com",
+        submitEndpoint: "" // put your API endpoint here when ready
+      };
+
+      const leadForm = document.getElementById('lead-form');
+      const leadEmail = document.getElementById('lead-email');
+      const leadArea = document.getElementById('lead-area');
+      const leadFeedback = document.getElementById('lead-feedback');
+
+      const actionModal = document.getElementById('action-modal');
+      const actionSource = document.getElementById('action-source');
+      const actionEmail = document.getElementById('action-email');
+      const actionArea = document.getElementById('action-area');
+      const actionForm = document.getElementById('action-form');
+      const actionFeedback = document.getElementById('action-feedback');
+      const closeAction = document.getElementById('action-close');
+
+      const lastLeadState = { email: '', area: '' };
+
+      function getMailBody(payload) {
+        const message = payload.message ? `\nMessage: ${payload.message}` : '';
+        return `Kidora lead request\nAction: ${payload.action}\nEmail: ${payload.email}\nArea: ${payload.area}${message}`;
+      }
+
+      async function sendLeadToDestination(payload) {
+        const body = {
+          to: CONFIG.supportEmail,
+          action: payload.action,
+          email: payload.email,
+          area: payload.area,
+          name: payload.name || '',
+          message: payload.message || ''
+        };
+
+        if (CONFIG.submitEndpoint) {
+          const response = await fetch(CONFIG.submitEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+
+          if (!response.ok) {
+            throw new Error('Server rejected submission');
+          }
+
+          return;
+        }
+
+        const subject = encodeURIComponent(`Kidora - ${payload.action}`);
+        const bodyText = encodeURIComponent(
+          `Hi team,\n${getMailBody(payload)}\n\nRegards,\nKidora Lead Form`
+        );
+
+        window.location.href = `mailto:${CONFIG.supportEmail}?subject=${subject}&body=${bodyText}`;
+      }
+
+      function setFeedback(element, text, success = true) {
+        element.textContent = text;
+        element.classList.toggle('is-success', success);
+      }
+
+      function openActionModal(actionLabel) {
+        actionSource.value = actionLabel;
+        actionFeedback.textContent = '';
+        actionEmail.value = lastLeadState.email;
+        actionArea.value = lastLeadState.area || '';
+        actionModal.classList.add('is-open');
+        actionModal.setAttribute('aria-hidden', 'false');
+        actionEmail.focus();
+      }
+
+      function closeActionModal() {
+        actionModal.classList.remove('is-open');
+        actionModal.setAttribute('aria-hidden', 'true');
+        actionFeedback.textContent = '';
+        actionForm.reset();
+      }
+
+      async function handleLeadSubmit(payload, successText) {
+        if (!payload.email || !payload.area) {
+          return { ok: false, message: 'Please provide both email and area.' };
+        }
+
+        try {
+          await sendLeadToDestination(payload);
+          return { ok: true, message: successText || `Thanks! We will contact you for ${payload.action}.` };
+        } catch (error) {
+          return { ok: false, message: 'Something went wrong. Please try again.' };
+        }
+      }
+
+      leadForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const email = leadEmail.value.trim();
+        const area = leadArea.value;
+
+        const response = await handleLeadSubmit(
+          { action: 'General availability updates', email, area },
+          'Thanks, we have your details and will send availability updates soon.'
+        );
+
+        setFeedback(leadFeedback, response.message, response.ok);
+
+        if (response.ok) {
+          lastLeadState.email = email;
+          lastLeadState.area = area;
+          leadEmail.value = '';
+          leadArea.value = '';
+        }
+      });
+
+      actionForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const payload = {
+          action: actionSource.value || 'Kidora action',
+          email: actionEmail.value.trim(),
+          area: actionArea.value,
+          message: 'Action request from coming soon pop up'
+        };
+
+        const response = await handleLeadSubmit(payload, `Great, we got your request for ${payload.action}.`);
+
+        setFeedback(actionFeedback, response.message, response.ok);
+
+        if (response.ok) {
+          lastLeadState.email = payload.email;
+          lastLeadState.area = payload.area;
+          setTimeout(closeActionModal, 800);
+        }
+      });
+
+      closeAction.addEventListener('click', closeActionModal);
+      actionModal.addEventListener('click', (event) => {
+        if (event.target === actionModal) {
+          closeActionModal();
+        }
+      });
+
+      document.querySelectorAll('.action-trigger').forEach((el) => {
+        el.addEventListener('click', function (event) {
+          event.preventDefault();
+          const actionLabel = el.dataset.action || el.textContent.trim();
+          openActionModal(actionLabel);
+        });
+      });
+    </script>
+  </body>
+</html>
