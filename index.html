@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kidora</title>
+    <title>Kidaro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,7 +16,7 @@
     <header class="top-nav">
       <div class="brand-row">
         <span class="mark">✦</span>
-        <span class="brand-text">Kidora</span>
+        <span class="brand-text">Kidaro</span>
       </div>
       <div class="search-pill">
         <span>⌕</span>
@@ -27,7 +27,7 @@
     <main>
       <section class="hero">
         <p class="hero-kicker">Explore • Learn • Shine</p>
-        <h1>Kids discover, grow, and connect at Kidora.</h1>
+        <h1>Kids discover, grow, and connect at Kidaro.</h1>
         <div class="hero-actions">
           <a class="chip green action-trigger" href="#" data-action="Book Offline Classes">Book Offline</a>
           <a class="chip yellow action-trigger" href="#" data-action="Book Online Classes">Book Online</a>
@@ -183,7 +183,7 @@
       </section>
 
       <footer>
-        <p>Kidora © 2026</p>
+        <p>Kidaro © 2026</p>
       </footer>
     </main>
 
@@ -241,14 +241,14 @@
 
       function getMailBody(payload) {
         const message = payload.message ? `\nMessage: ${payload.message}` : '';
-        return `Kidora lead request\nAction: ${payload.action}\nEmail: ${payload.email}\nArea: ${payload.area}${message}`;
+        return `Kidaro lead request\nAction: ${payload.action}\nEmail: ${payload.email}\nArea: ${payload.area}${message}`;
       }
 
       async function sendLeadToDestination(payload) {
         if (!CONFIG.submitEndpoint) {
-          const subject = encodeURIComponent(`Kidora - ${payload.action}`);
+          const subject = encodeURIComponent(`Kidaro - ${payload.action}`);
           const bodyText = encodeURIComponent(
-            `Hi team,\n${getMailBody(payload)}\n\nRegards,\nKidora Lead Form`
+            `Hi team,\n${getMailBody(payload)}\n\nRegards,\nKidaro Lead Form`
           );
 
           window.location.href = `mailto:${CONFIG.supportEmail}?subject=${subject}&body=${bodyText}`;
@@ -256,7 +256,7 @@
         }
 
         const formData = new FormData();
-        formData.append('_subject', `Kidora - ${payload.action}`);
+        formData.append('_subject', `Kidaro - ${payload.action}`);
         formData.append('_captcha', 'false');
         formData.append('Action', payload.action);
         formData.append('Email', payload.email);
@@ -332,7 +332,7 @@
       actionForm.addEventListener('submit', async function (event) {
         event.preventDefault();
         const payload = {
-          action: actionSource.value || 'Kidora action',
+          action: actionSource.value || 'Kidaro action',
           email: actionEmail.value.trim(),
           area: actionArea.value,
           message: 'Action request from coming soon pop up'
