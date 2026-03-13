@@ -220,8 +220,7 @@
 
     <script>
       const CONFIG = {
-        supportEmail: "kidarojj@gmail.com",
-        submitEndpoint: "https://formsubmit.co/ajax/kidarojj@gmail.com"
+        supportEmail: "kidarojj@gmail.com"
       };
 
       const leadForm = document.getElementById('lead-form');
@@ -245,33 +244,10 @@
       }
 
       async function sendLeadToDestination(payload) {
-        if (!CONFIG.submitEndpoint) {
-          const subject = encodeURIComponent(`Kidaro - ${payload.action}`);
-          const bodyText = encodeURIComponent(
-            `Hi team,\n${getMailBody(payload)}\n\nRegards,\nKidaro Lead Form`
-          );
+        const subject = encodeURIComponent(`Kidaro - ${payload.action}`);
+        const bodyText = encodeURIComponent(`Hi team,\n${getMailBody(payload)}\n\nRegards,\nKidaro Lead Form`);
 
-          window.location.href = `mailto:${CONFIG.supportEmail}?subject=${subject}&body=${bodyText}`;
-          return;
-        }
-
-        const formData = new FormData();
-        formData.append('_subject', `Kidaro - ${payload.action}`);
-        formData.append('_captcha', 'false');
-        formData.append('Action', payload.action);
-        formData.append('Email', payload.email);
-        formData.append('Area', payload.area);
-        formData.append('Name', payload.name || '');
-        formData.append('Message', payload.message || '');
-
-        const response = await fetch(CONFIG.submitEndpoint, {
-          method: 'POST',
-          body: formData
-        });
-
-        if (!response.ok) {
-          throw new Error('Server rejected submission');
-        }
+        window.location.href = `mailto:${CONFIG.supportEmail}?subject=${subject}&body=${bodyText}`;
       }
 
       function setFeedback(element, text, success = true) {
