@@ -91,6 +91,17 @@
             </select>
           </div>
           <div class="field-stack">
+            <label for="lead-interest">What are you looking for?</label>
+            <select id="lead-interest" required>
+              <option value="" disabled selected>Select a class</option>
+              <option>Piano</option>
+              <option>Classical Dance</option>
+              <option>Ballet</option>
+              <option>Math Olympiad</option>
+              <option>Robotics</option>
+            </select>
+          </div>
+          <div class="field-stack">
             <label for="lead-email">Email</label>
             <input id="lead-email" type="email" placeholder="you@example.com" required />
           </div>
@@ -231,6 +242,15 @@
             <option>BKC</option>
             <option>Mulund</option>
           </select>
+          <label for="action-interest">What are you looking for?</label>
+          <select id="action-interest" required>
+            <option value="" disabled selected>Select a class</option>
+            <option>Piano</option>
+            <option>Classical Dance</option>
+            <option>Ballet</option>
+            <option>Math Olympiad</option>
+            <option>Robotics</option>
+          </select>
           <button class="cta yellow" type="submit">Submit</button>
           <p id="action-feedback" class="feedback-text" role="status" aria-live="polite"></p>
         </form>
@@ -247,17 +267,19 @@
       const leadAge = document.getElementById('lead-age');
       const leadMode = document.getElementById('lead-mode');
       const leadArea = document.getElementById('lead-area');
+      const leadInterest = document.getElementById('lead-interest');
       const leadFeedback = document.getElementById('lead-feedback');
 
       const actionModal = document.getElementById('action-modal');
       const actionSource = document.getElementById('action-source');
       const actionEmail = document.getElementById('action-email');
       const actionArea = document.getElementById('action-area');
+      const actionInterest = document.getElementById('action-interest');
       const actionForm = document.getElementById('action-form');
       const actionFeedback = document.getElementById('action-feedback');
       const closeAction = document.getElementById('action-close');
 
-      const lastLeadState = { email: '', area: '', age: '', mode: '' };
+      const lastLeadState = { email: '', area: '', interest: '', age: '', mode: '' };
       let engagementActiveAt = document.visibilityState === 'visible' ? Date.now() : null;
       let engagementMs = 0;
       let engagementReported = false;
@@ -313,8 +335,9 @@
       function getMailBody(payload) {
         const age = payload.age ? `\nAge: ${payload.age}` : '';
         const mode = payload.mode ? `\nMode: ${payload.mode}` : '';
+        const interest = payload.interest ? `\nInterest: ${payload.interest}` : '';
         const message = payload.message ? `\nMessage: ${payload.message}` : '';
-        return `Kidaro lead request\nAction: ${payload.action}${age}${mode}\nEmail: ${payload.email}\nArea: ${payload.area}${message}`;
+        return `Kidaro lead request\nAction: ${payload.action}${age}${mode}\nEmail: ${payload.email}\nArea: ${payload.area}${interest}${message}`;
       }
 
       async function sendLeadToDestination(payload) {
@@ -335,6 +358,7 @@
         actionFeedback.textContent = '';
         actionEmail.value = lastLeadState.email;
         actionArea.value = lastLeadState.area || '';
+        actionInterest.value = lastLeadState.interest || '';
         actionModal.classList.add('is-open');
         actionModal.setAttribute('aria-hidden', 'false');
         actionEmail.focus();
@@ -349,8 +373,8 @@
       }
 
       async function handleLeadSubmit(payload, successText) {
-        if (!payload.email || !payload.area) {
-          return { ok: false, message: 'Please provide both email and area.' };
+        if (!payload.email || !payload.area || !payload.interest) {
+          return { ok: false, message: 'Please provide email, area, and a class interest.' };
         }
 
         try {
@@ -367,15 +391,17 @@
         const age = leadAge.value;
         const mode = leadMode.value;
         const area = leadArea.value;
+        const interest = leadInterest.value;
 
         emitAnalyticsEvent('lead_form_submit', {
           lead_age: age || 'unset',
           lead_mode: mode || 'unset',
-          lead_area: area || 'unset'
+          lead_area: area || 'unset',
+          lead_interest: interest || 'unset'
         });
 
         const response = await handleLeadSubmit(
-          { action: 'General availability updates', email, age, mode, area },
+          { action: 'General availability updates', email, age, mode, area, interest },
           'Thanks, we have your details and will get back with matching class options soon.'
         );
 
@@ -386,10 +412,12 @@
           lastLeadState.age = age;
           lastLeadState.mode = mode;
           lastLeadState.area = area;
+          lastLeadState.interest = interest;
           leadEmail.value = '';
           leadAge.value = '';
           leadMode.value = '';
           leadArea.value = '';
+          leadInterest.value = '';
         }
       });
 
@@ -399,12 +427,14 @@
           action: actionSource.value || 'Kidaro action',
           email: actionEmail.value.trim(),
           area: actionArea.value,
+          interest: actionInterest.value,
           message: 'Action request from coming soon pop up'
         };
 
         emitAnalyticsEvent('action_form_submit', {
           action: payload.action,
-          action_area: payload.area || 'unset'
+          action_area: payload.area || 'unset',
+          action_interest: payload.interest || 'unset'
         });
 
         const response = await handleLeadSubmit(payload, `Great, we got your request for ${payload.action}.`);
@@ -414,6 +444,7 @@
         if (response.ok) {
           lastLeadState.email = payload.email;
           lastLeadState.area = payload.area;
+          lastLeadState.interest = payload.interest;
           setTimeout(closeActionModal, 800);
         }
       });
